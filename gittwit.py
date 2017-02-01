@@ -20,16 +20,17 @@ excel_name = raw_input("Please enter a name for your csv file: ") + ".csv"
 sinceid = raw_input("Please enter an id: ")
 csv_out = open(excel_name, 'w') #opens csv file
 writer = csv.writer(csv_out) #create the csv writer object
-fields = ['created_at', 'id', 'text', 'screen_name', 'followers', 'friends', 'rt', 'fav'] #field names
+fields = ['created_at', 'id', 'text', 'screen_name', 'rt', 'fav'] #field names
 writer.writerow(fields) #writes field
 
 
 def get_data(since):
-	if since < 12000800000000000:
+	if since < 17017730370785300:
+		   
 		return ""
 
 	else:
-		url="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=ProsperDailyApp&exclude_replies=true&count=199&max_id="
+		url="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=LearnVest&exclude_replies=true&count=199&max_id="
 		data = oauth_req(url+str(since), TOKEN_KEY, TOKEN_SECRET)
 
 		data=json.loads(data)
@@ -43,8 +44,6 @@ def get_data(since):
 							 line.get('id'),
 							 line.get('text').encode('unicode_escape'), #unicode escape to fix emoji issue
 							 line.get('user').get('screen_name'),
-							 line.get('user').get('followers_count'),
-							 line.get('user').get('friends_count'),
 							 line.get('retweet_count'),
 							 line.get('favorite_count')])
 		last_id = line.get('id')	
@@ -52,10 +51,14 @@ def get_data(since):
 		print("\n")
 		
 		csv_out.close()
-		get_data(last_id-1)
+		get_data(last_id)
 		
 	
 get_data(sinceid)
 #last enter 573966384784265000 at 9:35pm on Jan. 30th
 #           568560731085410304
 # prosper: 290505000000000000
+# Level: all 
+# Quicken: 668869289974239232
+# personal capital: 101037618539671552
+# learnvest: 826531150030069761
