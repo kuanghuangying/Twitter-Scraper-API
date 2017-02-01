@@ -25,11 +25,11 @@ writer.writerow(fields) #writes field
 
 
 def get_data(since):
-	if since < 602000800000000000:
+	if since < 12000800000000000:
 		return ""
 
 	else:
-		url="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=mint&exclude_replies=true&count=199&max_id="
+		url="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=ProsperDailyApp&exclude_replies=true&count=199&max_id="
 		data = oauth_req(url+str(since), TOKEN_KEY, TOKEN_SECRET)
 
 		data=json.loads(data)
@@ -52,7 +52,10 @@ def get_data(since):
 		print("\n")
 		
 		csv_out.close()
-		get_data(last_id)
+		get_data(last_id-1)
 		
 	
 get_data(sinceid)
+#last enter 573966384784265000 at 9:35pm on Jan. 30th
+#           568560731085410304
+# prosper: 290505000000000000
