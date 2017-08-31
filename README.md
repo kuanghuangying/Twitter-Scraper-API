@@ -1,4 +1,4 @@
 # Twitter-Scraper-API
 
 
-Modified "sammmy99/tweets"
+Get max number of tweets, retweet, favorite data of twitter account
